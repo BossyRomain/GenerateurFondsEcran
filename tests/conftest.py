@@ -1,10 +1,12 @@
 import pytest
 import random
+from src.grille import Grille
+from src.images import recuperer_pochettes
 
 
 @pytest.fixture()
 def generer_parametres_valides():
-    parametres_test = ["./pochettesTests/", "../", "test", "jpeg", 120, (240, 360), [[5, 1], [4, 1]],
+    parametres_test = ["./pochettesTests/", "../", "test", "jpeg", 120, (1920, 1080), [[5, 1], [4, 1]],
                        {"holyDiver": 5, "kingsOfMetal": 3}]
     lignes = parametres_test[:4]
     lignes.append(str(parametres_test[4]))
@@ -44,3 +46,16 @@ def generer_parametres_valides():
                 lignes.append(f"test ")
     lignes.append('')
     return parametres_test, lignes
+
+
+@pytest.fixture()
+def images(generer_parametres_valides):
+    parametres = generer_parametres_valides[0]
+    return recuperer_pochettes(parametres[0], parametres[-1])
+
+
+@pytest.fixture()
+def grille(generer_parametres_valides):
+    parametres = generer_parametres_valides[0]
+    grille = Grille(parametres[5], parametres[4], parametres[-2])
+    return grille

@@ -1,6 +1,7 @@
 from src.parametres import lire_parametres
 from src.erreurs import afficherErreurEtQuitter
 from src.images import recuperer_pochettes
+from src.grille import Grille
 
 
 def main():
@@ -10,7 +11,13 @@ def main():
     except Exception as e:
         afficherErreurEtQuitter(e, 1)
 
-    recuperer_pochettes(dossier_pochettes, poids_pochettes)
+    images = recuperer_pochettes(dossier_pochettes, poids_pochettes)
+
+    grille = Grille(definition_cible, taille_cases, tailles_pochettes)
+
+    coords, taille = grille.trouver_carre_libre()
+
+    grille.ajouter_image(images[0], coords, taille)
 
 
 if __name__ == "__main__":

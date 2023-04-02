@@ -4,6 +4,8 @@ test
 png
 120
 1920 1080
+5 2
+7 5
 
 rising 5
 dreamEvil 5
