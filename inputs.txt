@@ -1,17 +1,24 @@
 ../../AlbumsCovers/
-../
+../out/
 test
-png
-120
+jpeg
+60
 1920 1080
+6 1
 5 2
-7 5
+4 4
+3 8
+2 16
 
-rising 5
-dreamEvil 5
-longLiveRockNRoll 5
-backInBlack 5
-dirt 5
-stayHungry 2
-lastInLine 2
+lastInLine 3
 holyDiver 2
+raiseOfChaosWizards 2
+longLiveRockNRoll 2
+richieBlackmore 2
+breakinOuttaHell 2
+curseOfTheCrystalCoconut 2
+theWarToEndAllWars 2
+warriorsOfTheWorld 2
+aNightAtTheOpera 2
+backInBlack 2
+emblasSaga 2
