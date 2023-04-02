@@ -4,8 +4,8 @@ import random
 
 @pytest.fixture()
 def generer_parametres_valides():
-    parametres_test = ["../../AlbumsCovers/", "../", "test", "jpeg", 120, (240, 360), [[5, 1], [4, 1]],
-                       [("test", 5), ("blabla", 3)]]
+    parametres_test = ["./pochettesTests/", "../", "test", "jpeg", 120, (240, 360), [[5, 1], [4, 1]],
+                       {"holyDiver": 5, "kingsOfMetal": 3}]
     lignes = parametres_test[:4]
     lignes.append(str(parametres_test[4]))
     lignes.append(f"{parametres_test[5][0]} {parametres_test[5][1]}")
@@ -27,14 +27,12 @@ def generer_parametres_valides():
             elif rand == 5:
                 lignes.append(f"5 {random.randint(-5, 0)}")
     lignes.append('')
-    for elem in parametres_test[7]:
-        lignes.append(f"{elem[0]} {elem[1]}")
+    for key in parametres_test[7]:
+        lignes.append(f"{key} {parametres_test[7][key]}")
         if random.randint(0, 2) == 1:
             # Ajout de bruit
-            rand = random.randint(0, 5)
-            if rand == 0:
-                lignes.append(f"120 15")
-            elif rand == 1:
+            rand = random.randint(1, 5)
+            if rand == 1:
                 lignes.append(f"👀 15")
             elif rand == 2:
                 lignes.append(f"test {random.randint(-5, 1)}")

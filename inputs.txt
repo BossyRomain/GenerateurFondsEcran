@@ -1,0 +1,15 @@
+../../AlbumsCovers/
+../
+test
+png
+120
+1920 1080
+
+rising 5
+dreamEvil 5
+longLiveRockNRoll 5
+backInBlack 5
+dirt 5
+stayHungry 2
+lastInLine 2
+holyDiver 2

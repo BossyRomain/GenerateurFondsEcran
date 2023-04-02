@@ -21,7 +21,7 @@ VALID_FORMATS = ("bmp", "dib", "jpeg", "jpg," "jpe," "jp2", "png", "pbm", "pgm",
 def lire_parametres():
     # Dossier des pochettes
     try:
-        dossier_pochettes = input("Entrer le dossier dans lequel se trouve les pochettes (dossier des pochettes)")
+        dossier_pochettes = input("Entrer le dossier dans lequel se trouve les pochettes (dossier des pochettes):\n")
     except EOFError:
         raise ParametreManquant("dossier des pochettes")
     if dossier_pochettes == "":
@@ -35,7 +35,7 @@ def lire_parametres():
     # Dossier de sauvegarde
     try:
         dossier_sauvegarde = input(
-            "Entrer le dossier dans lequel sera sauvegardé l'image résultat (dossier de sauvegarde)")
+            "Entrer le dossier dans lequel sera sauvegardé l'image résultat (dossier de sauvegarde):\n")
     except EOFError:
         raise ParametreManquant("dossier de sauvegarde")
     if dossier_sauvegarde == "":
@@ -48,7 +48,7 @@ def lire_parametres():
 
     # Nom de l'image
     try:
-        nom = input("Entrer le nom de l'image résultat")
+        nom = input("Entrer le nom de l'image résultat:\n")
     except EOFError:
         raise ParametreManquant("nom de l'image résultat")
     if nom == "":
@@ -59,7 +59,7 @@ def lire_parametres():
 
     # Format
     try:
-        format = input("Entrer le format de l'image résultat")
+        format = input("Entrer le format de l'image résultat:\n")
     except EOFError:
         raise ParametreManquant("format de l'image résultat")
     if format == "":
@@ -70,7 +70,7 @@ def lire_parametres():
 
     # Taille des cases
     try:
-        taille_cases = input("Entrer le format de l'image résultat")
+        taille_cases = input("Entrer le format de l'image résultat:\n")
         if taille_cases == "":
             raise ParametreManquant("taille des cases de la grille")
         taille_cases = int(taille_cases)
@@ -86,7 +86,7 @@ def lire_parametres():
 
     # Définition cible
     try:
-        ligne = input("Entrer la définition de l'image résultat (largeur hauteur)")
+        ligne = input("Entrer la définition de l'image résultat (largeur hauteur):\n")
         if ligne == "":
             raise ParametreManquant("définition de l'image résulat")
         ligne = ligne.strip().split(" ")
@@ -126,7 +126,7 @@ def lire_parametres():
         pass
 
     # Section poids des pochettes
-    poids_pochettes = []
+    poids_pochettes = {}
     try:
         ligne = input("")
         while ligne != "":
@@ -135,7 +135,7 @@ def lire_parametres():
                 if len(ligne) == 2:
                     ligne = (ligne[0], int(ligne[1]))
                     if ligne[0] != "" and ligne[0].isascii() and ligne[1] > 1:
-                        poids_pochettes.append(ligne)
+                        poids_pochettes[ligne[0]] = ligne[1]
                 ligne = input("")
             except EOFError:
                 ligne = ""
