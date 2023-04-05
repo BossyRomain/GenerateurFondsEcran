@@ -72,12 +72,12 @@ def lire_parametres():
                 afficherAvertissement(INVALIDE_POIDS_POCHETTE)
             except Exception:
                 stop = True
-        poids_pochettes = tuple(poids_pochettes)
+        poids_pochettes = dict(poids_pochettes)
     except Exception as e:
         raise e
         
 
-    return dossier_pochettes, dossier_sauvegarde, nom, format, taille_cases, definition_cible, tailles_pochettes
+    return dossier_pochettes, dossier_sauvegarde, nom, format, taille_cases, definition_cible, tailles_pochettes, poids_pochettes
 
 
 # Lit une ligne sur l'entrée standard

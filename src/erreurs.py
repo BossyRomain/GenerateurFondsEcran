@@ -30,6 +30,16 @@ class ParametreInvalide(Exception):
     def __str__(self):
         return f"parametre invalide : {self.message}!"
     
+    
+# Erreur pour un fichier d'image incorrect
+class ImageInvalide(Exception):
+    def __init__(self, nom_fichier):
+        super(Exception, self).__init__()
+        self.nom_fichier = nom_fichier
+    
+    def __str__(self):
+        return f"Le fichier {self.nom_fichier} n'est un fichier d'image ou n'est pas lisible"
+
 
 # Affiche un message d'avertissement sur la sortie d'erreur en orange
 def afficherAvertissement(message):
