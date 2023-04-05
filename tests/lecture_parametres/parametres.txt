@@ -1,0 +1,19 @@
+.
+.
+test_nom
+png
+120
+1920 1080
+5 1
+ee 5
+5.0 ee
+1 2 4
+1 2
+6 0
+
+lastInLine 5
+backInBlack 0
+test -5
+monsieur 2
+blabla 5.0
+machin 5 9
