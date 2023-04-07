@@ -62,13 +62,29 @@ class Grille:
                 self.cases_libres.remove((ligne + dl, colonne + dc))
 
         # Redimmensionnement de l'image
-        img = cv2.resize(image.pixels, (self.taille_cases, self.taille_cases))
+        img = cv2.resize(image.pixels, (self.taille_cases * taille, self.taille_cases * taille))
 
         if taille == 1:
-            self.cases[ligne][colonne] = copy.deepcopy(image)
+            self.cases[ligne][colonne] = copy.deepcopy(img)
         else:
-            step = int(self.taille_cases / taille)
+            i = 0
+            while self.tailles_pochettes[i][0] != taille:
+                i += 1
+            self.tailles_pochettes[i][1] -= 1
+            if self.tailles_pochettes[i][1] == 0:
+                self.tailles_pochettes.pop(i)
+
+            step = self.taille_cases
             for dl in range(taille):
                 for dc in range(taille):
                     crop = img[dl * step:(dl + 1) * step, dc * step:(dc + 1) * step]   
                     self.cases[ligne + dl][colonne + dc] = copy.deepcopy(crop)
+
+    
+    # Fusionne les cases de la grille en une seul image
+    def get_image_resultat(self):
+        lignes_fusionnees = []
+        for l in range(self.dimensions[1]):
+            lignes_fusionnees.append(cv2.hconcat(self.cases[l]))
+
+        return cv2.vconcat(lignes_fusionnees)
