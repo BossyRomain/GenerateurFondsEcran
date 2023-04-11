@@ -1,10 +1,23 @@
 import cv2
 import copy
+import subprocess
 
 from src.parametres import lire_parametres
 from src.images import recuperer_pochettes
 from src.erreurs import afficherErreurEtQuitter
 from src.grille import Grille
+
+
+def get_screend_dimension():
+    cmd = ['xrandr']
+    cmd2 = ['grep', '*']
+    p = subprocess.Popen(cmd, stdout=subprocess.PIPE)
+    p2 = subprocess.Popen(cmd2, stdin=p.stdout, stdout=subprocess.PIPE)
+    p.stdout.close()
+
+    resolution_string, junk = p2.communicate()
+    resolution = resolution_string.split()[0]
+    return resolution.split('x')
 
 
 def main():
@@ -14,6 +27,9 @@ def main():
         afficherErreurEtQuitter(str(e), 1)
 
     pochettes = recuperer_pochettes(dossier_pochettes, poids_pochettes)
+
+    # screen_width, screen_height = get_screend_dimension()
+    cv2.namedWindow("Resultat", cv2.WINDOW_NORMAL)
 
     toucheAppyuee = 1
     while toucheAppyuee != ord('s'):
@@ -26,13 +42,12 @@ def main():
             indice_image += 1
 
         image_resultat = grille.get_image_resultat()
-        print(image_resultat.shape)
 
         cv2.imshow("Resultat", image_resultat)
         toucheAppyuee = cv2.waitKey(0)
-        cv2.destroyAllWindows()
         del grille
 
+    cv2.destroyAllWindows()
     cv2.imwrite(f"{dossier_sauvegarde}{nom}.{format}", image_resultat)
         
 
